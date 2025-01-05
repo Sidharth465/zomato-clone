@@ -8,6 +8,8 @@ import {
   Alert,
   Platform,
   Image,
+  TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
@@ -20,12 +22,13 @@ import PhoneInput from "@components/ui/PhoneInput";
 
 const LoginScreen = () => {
   const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   const handleLogin = async () => {
     // Simple validation
-    if (phone && password) {
+    if (phone) {
       const token = "mocked-jwt-token";
       try {
         await AsyncStorage.setItem("userToken", token);
@@ -64,7 +67,28 @@ const LoginScreen = () => {
         </CustomText>
         <BreakerText text="Log in or Sign up" />
         <PhoneInput value={phone} onChangeText={(e) => setPhone(e)} />
+        <TouchableOpacity
+          disabled={loading}
+          activeOpacity={0.5}
+          style={styles.buttonContainer}
+          onPress={handleLogin}
+        >
+          {loading ? (
+            <ActivityIndicator size={"large"} color={"#fff"} />
+          ) : (
+            <CustomText color="#fff" variant="h5" fontFamily="Okra-Medium">
+              Continue
+            </CustomText>
+          )}
+        </TouchableOpacity>
+        <BreakerText text="or" />
       </Animated.ScrollView>
+      <View style={styles.footer}>
+        <CustomText>By Continuing, you agree to our </CustomText>
+        <View style={styles.footerTextContainer}>
+          <CustomText style={styles.footerText}>Terms of Services</CustomText>
+        </View>
+      </View>
     </View>
   );
 };
