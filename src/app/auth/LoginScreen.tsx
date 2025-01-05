@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -10,42 +10,64 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  Animated,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { loginStyles as styles } from "src/unistyles/authStyles";
 import { StatusBar } from "expo-status-bar";
-import Animated from "react-native-reanimated";
+
 import CustomText from "@components/ui/CustomText";
 import BreakerText from "@components/ui/BreakerText";
 import PhoneInput from "@components/ui/PhoneInput";
+import SocialLogin from "@components/ui/SocialLogin";
+import useKeyboardOffsetHeight from "@utils/useKeyboardOffsetHeight";
 
 const LoginScreen = () => {
+  const animatedValue = useRef(new Animated.Value(0)).current;
+  const keyboardOffsetHeight = useKeyboardOffsetHeight();
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
-
   const router = useRouter();
 
   const handleLogin = async () => {
     // Simple validation
+
     if (phone) {
+      setLoading(true);
       const token = "mocked-jwt-token";
       try {
-        await AsyncStorage.setItem("userToken", token);
-        Alert.alert(`Success", "You are logged in! token ${token}`);
+        setTimeout(async () => {
+          await AsyncStorage.setItem("userToken", token);
 
-        router.replace("/home");
+          router.replace("/home/delivery");
+        }, 4000);
       } catch (error) {
         Alert.alert("Error", "Failed to save the token.");
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     } else {
-      Alert.alert(
-        "Invalid Credentials",
-        "Please check your username and password."
-      );
+      Alert.alert("Invalid Credentials", "Please check your Phone Number.");
     }
   };
+
+  useEffect(() => {
+    if (keyboardOffsetHeight === 0) {
+      Animated.timing(animatedValue, {
+        toValue: 0,
+        delay: 100,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(animatedValue, {
+        toValue: -keyboardOffsetHeight * 0.25,
+        delay: 100,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [keyboardOffsetHeight]);
 
   return (
     <View style={styles.container}>
@@ -57,6 +79,7 @@ const LoginScreen = () => {
         source={require("@assets/images/login.png")}
       />
       <Animated.ScrollView
+        style={{ transform: [{ translateY: animatedValue }] }}
         bounces={false}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode={"on-drag"}
@@ -82,11 +105,14 @@ const LoginScreen = () => {
           )}
         </TouchableOpacity>
         <BreakerText text="or" />
+        <SocialLogin />
       </Animated.ScrollView>
       <View style={styles.footer}>
         <CustomText>By Continuing, you agree to our </CustomText>
         <View style={styles.footerTextContainer}>
           <CustomText style={styles.footerText}>Terms of Services</CustomText>
+          <CustomText style={styles.footerText}>Privacy Policy</CustomText>
+          <CustomText style={styles.footerText}>Content Policy</CustomText>
         </View>
       </View>
     </View>

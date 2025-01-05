@@ -48,3 +48,24 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+# React Native Expo Project
+
+This is a React Native project bootstrapped with Expo, designed to deliver a seamless mobile experience. The app is structured for scalability and maintainability, leveraging best practices in React Native development.
+
+## Features
+
+- Built with **React Native** and **Expo** for fast development and deployment.
+- Uses **StyleSheet** with separate styling for each component and screen, ensuring a clean and modular design.
+- Optimized for both Android and iOS platforms.
+- **Reusable components** for consistent UI across the app.
+- State management using **React Hooks** (`useState`, `useEffect`, etc.).
+- Navigation powered by **Expo Router** for smooth screen transitions.
+- Handles token expiration and refresh logic to maintain secure user sessions.
+- Implements **responsive design** to ensure usability on devices of all sizes.
+
+---
+
+## Project Structure
+
+The project follows a modular structure with separate folders for components, screens, and styles.

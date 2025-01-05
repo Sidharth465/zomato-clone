@@ -90,7 +90,7 @@ export const loginStyles = StyleSheet.create({
   },
   footer: {
     position: "absolute",
-    bottom: 26,
+    bottom: 20,
     alignSelf: "center",
     width: "100%",
     justifyContent: "center",
