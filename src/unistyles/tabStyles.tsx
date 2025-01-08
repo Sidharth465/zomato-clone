@@ -9,6 +9,8 @@ export const tabStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingLeft: 15,
+    flex: 1,
+    // borderWidth: 1,
   },
   tabBarContainer: {
     width: "100%",

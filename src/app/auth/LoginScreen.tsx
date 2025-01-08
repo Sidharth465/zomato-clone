@@ -57,13 +57,13 @@ const LoginScreen = () => {
     if (keyboardOffsetHeight === 0) {
       Animated.timing(animatedValue, {
         toValue: 0,
-        delay: 100,
+        delay: 50,
         useNativeDriver: true,
       }).start();
     } else {
       Animated.timing(animatedValue, {
         toValue: -keyboardOffsetHeight * 0.25,
-        delay: 100,
+        delay: 50,
         useNativeDriver: true,
       }).start();
     }
