@@ -54,7 +54,7 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
   });
 
   const indicatorAnimateStyle = useAnimatedStyle(() => {
-    const baseLeft = 32;
+    const baseLeft = 30;
     let slideValue = 0.24;
 
     return {
@@ -107,6 +107,7 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
                 {route.name === "dining/index" && (
                   <DiningTabIcon focused={isFocused} />
                 )}
+
                 {route.name === "reorder/index" && (
                   <ReorderTabIcon focused={isFocused} />
                 )}
@@ -116,7 +117,9 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
               </ScalePress>
             );
           })}
+          <View style={styles.verticalLine} />
         </View>
+
         <Animated.View
           style={[
             styles.slidingIndicator,

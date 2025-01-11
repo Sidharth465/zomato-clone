@@ -103,12 +103,14 @@ const styles = StyleSheet.create({
     marginTop: 4,
     color: Colors.lightText,
     fontSize: RFValue(9.5),
+    fontWeight: "600",
   },
   textStleActive: {
     textAlign: "center",
     marginTop: 4,
     color: Colors.active,
     fontSize: RFValue(9.5),
+    fontWeight: "600",
   },
 });
 
