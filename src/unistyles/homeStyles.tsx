@@ -1,6 +1,6 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import { StyleSheet, Dimensions, Platform } from "react-native";
-import { Colors, isBannerHeight } from "./Constants"; // Assuming Constants contains your colors and other values
+import { Colors } from "./Constants"; // Assuming Constants contains your colors and other values
 
 const device = {
   width: Dimensions.get("screen").width,
@@ -13,7 +13,7 @@ export const homeStyles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   topHidingContainer: {
-    marginTop: isBannerHeight,
+    marginTop: 10,
     backgroundColor: Colors.background,
   },
   topHeader: {
@@ -24,6 +24,7 @@ export const homeStyles = StyleSheet.create({
   animatedText: {
     fontSize: RFValue(10.5),
     fontFamily: "Okra-Bold",
+    color: "#fff",
   },
   animatedSubText: {
     fontSize: RFValue(7),
@@ -149,29 +150,54 @@ export const homeStyles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
   },
-  leftTab: (isActive) => ({
+  activeLeftTab: {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     padding: 5,
     paddingHorizontal: 10,
-    backgroundColor: isActive ? Colors.tertiary : Colors.background,
+    backgroundColor: Colors.tertiary,
     borderWidth: 1,
-    borderColor: isActive ? Colors.active : Colors.border,
+    borderColor: Colors.active,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
-  }),
-  rightTab: (isActive) => ({
+  },
+  inActiveLeftTab: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    padding: 5,
+    paddingHorizontal: 10,
+    backgroundColor: Colors.background,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
+  },
+  activeRightTab: {
     justifyContent: "center",
     alignItems: "center",
     gap: 5,
     padding: 5,
     paddingHorizontal: 10,
     flexDirection: "row",
-    backgroundColor: isActive ? Colors.tertiary : Colors.background,
+    backgroundColor: Colors.tertiary,
     borderWidth: 1,
-    borderColor: isActive ? Colors.active : Colors.border,
+    borderColor: Colors.active,
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
-  }),
+  },
+  inActiveRightTab: {
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 5,
+    padding: 5,
+    paddingHorizontal: 10,
+    flexDirection: "row",
+    backgroundColor: Colors.background,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+  },
 });

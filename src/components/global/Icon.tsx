@@ -17,11 +17,11 @@ const Icon: FC<IconProps> = ({ iconFamily, name, size, color }) => {
       {iconFamily === "Ionicons" && (
         <Ionicons name={name} size={size} color={color} />
       )}
-      {iconFamily === "MaterialCommunityIcons" && (
+      {iconFamily === "MaterialIcons" && (
         <MaterialIcons name={name} size={size} color={color} />
       )}
       {iconFamily === "MaterialCommunityIcons" && (
-        <Ionicons name={name} size={size} color={color} />
+        <MaterialCommunityIcons name={name} size={size} color={color} />
       )}
     </>
   );

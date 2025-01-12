@@ -8,7 +8,7 @@ export const tabStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 15,
+    // paddingHorizontal: 15,
     flex: 1,
     // borderWidth: 1,
   },
@@ -32,7 +32,7 @@ export const tabStyles = StyleSheet.create({
     height: "60%",
     width: 1,
     position: "absolute",
-    left: "51%",
+    left: "47%",
     borderRadius: 20,
     opacity: 0.2,
     backgroundColor: "#B3B3B3", // Using default color
@@ -58,11 +58,12 @@ export const tabStyles = StyleSheet.create({
   blinkitLogoContainer: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    width: "12%",
+    width: "11%",
     overflow: "hidden",
     backgroundColor: "#F7CB46",
     borderTopLeftRadius: 6,
     borderBottomLeftRadius: 6,
+    // borderWidth: 1,
   },
   blinkitLogo: {
     width: "100%",

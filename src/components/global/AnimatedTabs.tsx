@@ -1,4 +1,11 @@
-import { View, Dimensions } from "react-native";
+import {
+  View,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+  Linking,
+  Pressable,
+} from "react-native";
 import React from "react";
 import { useAppSelector } from "@hooks/index";
 import { useSharedState } from "@library/context/SharedContext";
@@ -35,10 +42,10 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
       sortedRoutes.findIndex(
         (route) => route.name === state.routes[state.index]?.name
       ),
-    [sortedRoutes, state.routes, state.index]
+    [sortedRoutes, state?.routes, state?.index]
   );
 
-  const isLiveTabFocused = state.routes[state.index]?.name === "live/index";
+  const isLiveTabFocused = state?.routes[state.index]?.name === "live/index";
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -54,8 +61,8 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
   });
 
   const indicatorAnimateStyle = useAnimatedStyle(() => {
-    const baseLeft = 30;
-    let slideValue = 0.24;
+    const baseLeft = 10;
+    let slideValue = 0.23;
 
     return {
       left: withTiming(baseLeft + sortedIndex * screenWidth * slideValue),
@@ -132,7 +139,21 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
                   : Colors.primary,
             },
           ]}
-        ></Animated.View>
+        />
+
+        <Pressable
+          onPress={() =>
+            Linking.openURL(
+              "https://play.google.com/store/apps/dev?id=7650048150730203407&hl=en-US&pli=1"
+            )
+          }
+          style={styles.blinkitLogoContainer}
+        >
+          <Image
+            style={styles.blinkitLogo}
+            source={require("@assets/icons/blinkit.png")}
+          />
+        </Pressable>
       </Animated.View>
     </>
   );

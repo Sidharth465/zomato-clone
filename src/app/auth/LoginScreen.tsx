@@ -8,7 +8,7 @@ import {
   Alert,
   Platform,
   Image,
-  TouchableOpacity,
+  Pressable,
   ActivityIndicator,
   Animated,
 } from "react-native";
@@ -90,9 +90,8 @@ const LoginScreen = () => {
         </CustomText>
         <BreakerText text="Log in or Sign up" />
         <PhoneInput value={phone} onChangeText={(e) => setPhone(e)} />
-        <TouchableOpacity
+        <Pressable
           disabled={loading}
-          activeOpacity={0.5}
           style={styles.buttonContainer}
           onPress={handleLogin}
         >
@@ -103,7 +102,7 @@ const LoginScreen = () => {
               Continue
             </CustomText>
           )}
-        </TouchableOpacity>
+        </Pressable>
         <BreakerText text="or" />
         <SocialLogin />
       </Animated.ScrollView>

@@ -4,6 +4,7 @@ import {
   ViewStyle,
   Animated,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 import React, { FC, ReactNode } from "react";
 import { transform } from "@babel/core";
@@ -37,18 +38,17 @@ const ScalePress: FC<ScalePressProps> = ({
     }).start();
   };
   return (
-    <TouchableOpacity
+    <Pressable
       onPressIn={onPressIn}
       onPressOut={onPressOut}
       onPress={onPress}
       onLongPress={onLongPress}
-      activeOpacity={1}
       style={{ ...style, flex: 1 }}
     >
       <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
         {children}
       </Animated.View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
