@@ -56,6 +56,7 @@ export const homeStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+
   },
   flexRowGap: {
     flexDirection: "row",

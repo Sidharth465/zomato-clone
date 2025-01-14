@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 export const Colors = {
   primary: "#E23744",
   primary_light: "#EF4F5F",
@@ -29,4 +31,4 @@ export const Fonts = {
   Bold: "Okra-ExtraBold",
 };
 // Define the bottom tab height as a constant
-export const BOTTOM_TAB_HEIGHT = 60; // Adjust this value as per your design needs
+export const BOTTOM_TAB_HEIGHT = Platform.OS == "android" ? 60:100; // Adjust this value as per your design needs

@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.zomato"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,11 +31,11 @@
         {
           "image": "./src/assets/images/logo.png",
           "imageWidth": 360,
-
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

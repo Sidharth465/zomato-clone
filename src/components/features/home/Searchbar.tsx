@@ -51,7 +51,7 @@ const Searchbar = () => {
   });
   return (
     <>
-      <SafeAreaView>
+
         <View style={[homeStyles.flexRowBetween, homeStyles.padding]}>
           <Pressable style={homeStyles.searchInputContainer}>
             <Icon
@@ -111,7 +111,7 @@ const Searchbar = () => {
             />
           </Pressable>
         </View>
-      </SafeAreaView>
+
     </>
   );
 };

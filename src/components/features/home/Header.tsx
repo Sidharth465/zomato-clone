@@ -1,15 +1,14 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { View } from "react-native";
 import LocationHeader from "./LocationHeader";
-import Graphics from "./Graphics";
 import Searchbar from "./Searchbar";
 
 const Header = () => {
   return (
-    <View>
+    <>
       <LocationHeader />
       <Searchbar />
-    </View>
+    </>
   );
 };
 

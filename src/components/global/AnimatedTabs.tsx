@@ -79,6 +79,8 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
             paddingBottom: bottom.bottom,
             backgroundColor: isLiveTabFocused ? Colors.dark : Colors.background,
             justifyContent: "center",
+
+            
           },
         ]}
       >
