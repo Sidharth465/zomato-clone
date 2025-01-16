@@ -31,27 +31,28 @@ const LoginScreen = () => {
   const router = useRouter();
 
   const handleLogin = async () => {
-    // Simple validation
 
-    if (phone) {
-      setLoading(true);
-      const token = "mocked-jwt-token";
-      try {
-        setTimeout(async () => {
-          await AsyncStorage.setItem("userToken", token);
+    setLoading(true); 
+    const token = "mocked-jwt-token"; 
+  
+    try {
 
-          router.replace("/home/delivery");
-        }, 4000);
-      } catch (error) {
-        Alert.alert("Error", "Failed to save the token.");
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      Alert.alert("Invalid Credentials", "Please check your Phone Number.");
+      await new Promise((resolve) => setTimeout(resolve, 4000));
+  
+
+      await AsyncStorage.setItem("userToken", token);
+  
+
+      router.replace("/home/delivery");
+    } catch (error) {
+      Alert.alert("Error", "Failed to save the token.");
+      console.error(error);
+    } finally {
+
+      setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     if (keyboardOffsetHeight === 0) {
@@ -96,7 +97,7 @@ const LoginScreen = () => {
           onPress={handleLogin}
         >
           {loading ? (
-            <ActivityIndicator size={"large"} color={"#fff"} />
+            <ActivityIndicator size={"small"} color={"#fff"} />
           ) : (
             <CustomText color="#fff" variant="h5" fontFamily="Okra-Medium">
               Continue

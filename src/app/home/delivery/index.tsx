@@ -11,6 +11,7 @@ import Animated, {
 import { useSharedState } from "@library/context/SharedContext";
 import Graphics from "@components/features/home/Graphics";
 import Header from "@components/features/home/Header";
+import MainList from "@components/list/MainList";
 
 const Delivery: FC = () => {
   const insets = useSafeAreaInsets();
@@ -57,6 +58,11 @@ const Delivery: FC = () => {
           <Header />
         </Animated.View>
       </Animated.View>
+      <Animated.View style={[moveUpStyle]}>
+        <MainList/>
+      </Animated.View>
+
+
     </View>
   );
 };

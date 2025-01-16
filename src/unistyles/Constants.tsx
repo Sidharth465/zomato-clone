@@ -1,4 +1,10 @@
-import { Platform } from "react-native";
+import { Dimensions, Platform } from "react-native";
+export const BOTTOM_TAB_HEIGHT = Platform.OS == "android" ? 60:90; // Adjust this value as per your design needs
+export const screeHeight = Dimensions.get("screen").height
+export const screeWidth = Dimensions.get("screen").width
+export const isBannerHeight = screeHeight*0.4
+
+
 
 export const Colors = {
   primary: "#E23744",
@@ -31,4 +37,3 @@ export const Fonts = {
   Bold: "Okra-ExtraBold",
 };
 // Define the bottom tab height as a constant
-export const BOTTOM_TAB_HEIGHT = Platform.OS == "android" ? 60:100; // Adjust this value as per your design needs

@@ -16,16 +16,7 @@ const HomeLayout = () => {
           initialRouteName="delivery/index"
           screenOptions={{ headerShown: false, animation: "shift" }}
         >
-          {/* <Tabs.Screen
-          name="delivery/index"
-          options={{ tabBarLabel: "Delivery" }}
-        />
-        <Tabs.Screen name="dining/index" options={{ tabBarLabel: "Dining" }} />
-        <Tabs.Screen
-          name="reorder/index"
-          options={{ tabBarLabel: "Reorder" }}
-        />
-        <Tabs.Screen name="live/index" options={{ tabBarLabel: "Live" }} /> */}
+         
         </Tabs>
       </Provider>
     </SharedStateProvider>

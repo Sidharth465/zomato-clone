@@ -1,6 +1,6 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import { StyleSheet, Dimensions, Platform } from "react-native";
-import { Colors } from "./Constants"; // Assuming Constants contains your colors and other values
+import { Colors, isBannerHeight ,} from "./Constants"; // Assuming Constants contains your colors and other values
 
 const device = {
   width: Dimensions.get("screen").width,
@@ -13,7 +13,7 @@ export const homeStyles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   topHidingContainer: {
-    marginTop: 10,
+    marginTop: isBannerHeight,
     backgroundColor: Colors.background,
   },
   topHeader: {

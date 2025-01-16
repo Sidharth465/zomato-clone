@@ -61,6 +61,7 @@ const Searchbar = () => {
               iconFamily="Ionicons"
             />
             <RollingContent
+
               //   animationDuration={300}
               interval={3000}
               defaultStyle={false}
@@ -81,7 +82,7 @@ const Searchbar = () => {
               })}
             </RollingContent>
             <Icon
-              name="search"
+              name="mic"
               color={isVegMode ? Colors.active : Colors.primary}
               size={20}
               iconFamily="Ionicons"

@@ -41,7 +41,7 @@ const LocationHeader: FC = () => {
                 fontFamily="Okra-Medium"
                 color={textColor}
               >
-                Erangle, pochinki
+                Delhi, India
               </CustomText>
               <Icon
                 name="chevron-down"
