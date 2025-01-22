@@ -21,7 +21,7 @@ const PhoneInput: FC<PhoneInputProps> = ({
   return (
     <View style={style.container}>
       <Pressable style={style.countryPickerContainer}>
-        <CustomText variant="h2">🏳️‍⚧️</CustomText>
+        <CustomText variant="h2">🇮🇳</CustomText>
         <Icon
           iconFamily="Ionicons"
           name="caret-down-sharp"
