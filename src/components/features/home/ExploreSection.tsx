@@ -4,6 +4,9 @@ import { homeStyles as styles } from 'src/unistyles/homeStyles'
 import CustomText from '@components/ui/CustomText'
 import { Colors } from 'src/unistyles/Constants'
 import Icon from '@components/global/Icon'
+import RecommendedList from '@components/list/RecommendedList'
+import BreakerText from '@components/ui/BreakerText'
+import RegularFoodList from '@components/list/RegularFoodList'
 
 const ExploreSection: FC = () => {
   const [tabSelected, setTabSelected] = useState(1)
@@ -19,6 +22,11 @@ const ExploreSection: FC = () => {
         </Pressable>
 
       </View>
+
+     <RecommendedList />
+      <BreakerText  text="WHAT'S ON YOUR MIND"/>
+      <RegularFoodList />
+      <BreakerText  text="ALL RESTAURANTS"/>
 
     </View>
   )

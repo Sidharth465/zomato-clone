@@ -1,17 +1,16 @@
-import { View, Text, Platform } from "react-native";
-import React, { FC } from "react";
-import { homeStyles as styles } from "src/unistyles/homeStyles";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Animated, {
-  Extrapolate,
-  Extrapolation,
-  interpolate,
-  useAnimatedStyle,
-} from "react-native-reanimated";
-import { useSharedState } from "@library/context/SharedContext";
 import Graphics from "@components/features/home/Graphics";
 import Header from "@components/features/home/Header";
 import MainList from "@components/list/MainList";
+import { useSharedState } from "@library/context/SharedContext";
+import React, { FC } from "react";
+import { Platform, View } from "react-native";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedStyle
+} from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { homeStyles as styles } from "src/unistyles/homeStyles";
 
 const Delivery: FC = () => {
   const insets = useSafeAreaInsets();

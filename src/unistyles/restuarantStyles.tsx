@@ -35,6 +35,8 @@ export const restaurantStyles = StyleSheet.create({
     shadowRadius: 10,
     shadowColor: Colors.dark,
     margin: 10,
+
+
   },
   image: {
     borderTopLeftRadius: 10,

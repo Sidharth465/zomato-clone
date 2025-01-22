@@ -10,8 +10,8 @@ import React, { FC, ReactNode } from "react";
 import { transform } from "@babel/core";
 
 interface ScalePressProps {
-  onPress: () => void;
-  onLongPress: () => void;
+  onPress?: () => void;
+  onLongPress?: () => void;
   children?: ReactNode;
   style?: ViewStyle | ViewStyle[];
 }

@@ -13,7 +13,7 @@ const HomeLayout = () => {
       <Provider store={store}>
         <Tabs
           tabBar={(props) => <AnimatedTabBar {...props} />}
-          initialRouteName="delivery/index"
+          initialRouteName="delivery"
           screenOptions={{ headerShown: false, animation: "shift" }}
         >
          

@@ -95,6 +95,8 @@ const LoginScreen = () => {
           disabled={loading}
           style={styles.buttonContainer}
           onPress={handleLogin}
+
+          hitSlop={{top:10,bottom:10,left:10,right:10}}
         >
           {loading ? (
             <ActivityIndicator size={"small"} color={"#fff"} />

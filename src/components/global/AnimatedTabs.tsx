@@ -31,19 +31,19 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
   const screenWidth = Dimensions.get("screen").width;
 
   // Sort routes based on folder structure order
-  const sortedRoutes = React.useMemo(() => {
-    const order = [...state?.routeNames]?.reverse();
-    return [...state.routes].sort(
-      (a, b) => order.indexOf(a.name) - order.indexOf(b.name)
-    );
-  }, [state.routes]);
-  const sortedIndex = React.useMemo(
-    () =>
-      sortedRoutes.findIndex(
-        (route) => route.name === state.routes[state.index]?.name
-      ),
-    [sortedRoutes, state?.routes, state?.index]
-  );
+  // const sortedRoutes = React.useMemo(() => {
+  //   const order = [...state?.routeNames]?.reverse();
+  //   return [...state.routes].sort(
+  //     (a, b) => order.indexOf(a.name) - order.indexOf(b.name)
+  //   );
+  // }, [state.routes]);
+  // const sortedIndex = React.useMemo(
+  //   () =>
+  //     sortedRoutes.findIndex(
+  //       (route) => route.name === state.routes[state.index]?.name
+  //     ),
+  //   [sortedRoutes, state?.routes, state?.index]
+  // );
 
   const isLiveTabFocused = state?.routes[state.index]?.name === "live/index";
 
@@ -62,10 +62,10 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
 
   const indicatorAnimateStyle = useAnimatedStyle(() => {
     const baseLeft = 10;
-    let slideValue = 0.23;
+    let slideValue = state.index == 3 ? 0.226 :0.23;
 
     return {
-      left: withTiming(baseLeft + sortedIndex * screenWidth * slideValue),
+      left: withTiming(baseLeft +  state?.index* screenWidth * slideValue),
     };
   });
 
@@ -85,8 +85,10 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
         ]}
       >
         <View style={styles.tabContainer}>
-          {sortedRoutes.map((route: any, index: number) => {
-            const isFocused = index === sortedIndex;
+          {state?.routes?.map((route: any, index: number) => {
+            const isFocused = index === state.index;
+
+
 
             const onPress = () => {
               const event = navigation.emit({
@@ -110,7 +112,7 @@ const AnimatedTabBar = ({ state, descriptors, navigation }: any) => {
                 key={index}
                 style={[styles.tabItem, isFocused ? styles.focusedTabItem : {}]}
               >
-                {route.name === "delivery/index" && (
+                {route.name === "delivery" && (
                   <DeliveryTabIcon focused={isFocused} />
                 )}
                 {route.name === "dining/index" && (

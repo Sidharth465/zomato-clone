@@ -7,7 +7,7 @@ const Graphics: FC = () => {
   return (
     <View style={styles.lottieContainer} pointerEvents="none">
       <LottieView
-        autoPlay={true}
+        autoPlay={Platform.OS !== "android"}
         loop={Platform.OS !== "android"}
         // ref={animation}
         style={styles.lottie}
