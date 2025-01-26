@@ -5,10 +5,12 @@ import { SharedStateProvider } from "@library/context/SharedContext";
 import AnimatedTabBar from "@components/global/AnimatedTabs";
 import { Provider } from "react-redux";
 import { store } from "@library/redux/store";
+import { ModalProvider } from "src/providers/ModalProvider";
 ("@components/global/AnimatedTabs");
 
 const HomeLayout = () => {
   return (
+    <ModalProvider>
     <SharedStateProvider>
       <Provider store={store}>
         <Tabs
@@ -20,6 +22,7 @@ const HomeLayout = () => {
         </Tabs>
       </Provider>
     </SharedStateProvider>
+    </ModalProvider>
   );
 };
 

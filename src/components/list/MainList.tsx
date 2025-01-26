@@ -29,7 +29,7 @@ const MainList: FC = () => {
     const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const currentScrollY = event?.nativeEvent?.contentOffset?.y;
         const isScrollingDown = currentScrollY > previousScrollY.current;
-        scrollY.value = isScrollingDown ? withTiming(1, { duration: 300 }) : withTiming(0, { duration: 300 });
+        scrollY.value = isScrollingDown  ? withTiming(1, { duration: 300 }) : withTiming(0, { duration: 300 });
         scrollYGlobal.value = currentScrollY;
         previousScrollY.current = currentScrollY
 
@@ -84,7 +84,7 @@ const MainList: FC = () => {
                 <BackToTopButton onPress={handleScrollToTop} />
 
             </Animated.View>
-            <SectionList ref={sectionListRef} sections={sectionListData} onScroll={handleScroll} overScrollMode='always' scrollEventThrottle={16} bounces={false}
+            <SectionList  ref={sectionListRef} sections={sectionListData} onScroll={handleScroll} overScrollMode='always' scrollEventThrottle={16} bounces={false}
                 renderSectionHeader={({ section }) => {
                     if (section.title !== "Restaurants") {
                         return null;

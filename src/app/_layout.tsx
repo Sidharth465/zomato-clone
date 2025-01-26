@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { View, ActivityIndicator, StyleSheet, Alert } from "react-native";
 import SplashScreen from "./auth/SplashScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ModalProvider } from "src/providers/ModalProvider";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const EntryLayout = () => {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -33,6 +35,8 @@ const EntryLayout = () => {
   }
 
   return (
+    <GestureHandlerRootView>
+   
     <Stack
       initialRouteName="index"
       screenOptions={{ headerShown: false, animation: "fade" }}
@@ -41,7 +45,10 @@ const EntryLayout = () => {
       <Stack.Screen name="auth" />
       <Stack.Screen name="home" />
     </Stack>
+
+    </GestureHandlerRootView>
   );
+
 };
 
 export default EntryLayout;

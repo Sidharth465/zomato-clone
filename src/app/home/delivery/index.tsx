@@ -3,13 +3,14 @@ import Header from "@components/features/home/Header";
 import MainList from "@components/list/MainList";
 import { useSharedState } from "@library/context/SharedContext";
 import React, { FC } from "react";
-import { Platform, View } from "react-native";
+import { Button, Platform, Text, View } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
   useAnimatedStyle
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useModalContext } from "src/providers/ModalProvider";
 import { homeStyles as styles } from "src/unistyles/homeStyles";
 
 const Delivery: FC = () => {
@@ -46,7 +47,7 @@ const Delivery: FC = () => {
     <View
       style={[
         styles.container,
-        { height: Platform.OS === "android" ? insets.top : 0 },
+        { height: Platform.OS === "android" ? insets.top : 0, zIndex: 100 },
       ]}
     >
       <Animated.View style={[moveUpStyle]}>
@@ -55,11 +56,16 @@ const Delivery: FC = () => {
         </Animated.View>
         <Animated.View style={[backgroundColorChanges, styles.topHeader]}>
           <Header />
+
         </Animated.View>
       </Animated.View>
+
       <Animated.View style={[moveUpStyle]}>
-        <MainList/>
+        <MainList />
+
       </Animated.View>
+
+
 
 
     </View>
