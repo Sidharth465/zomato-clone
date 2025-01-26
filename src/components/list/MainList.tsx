@@ -18,7 +18,7 @@ const sectionListData = [
 
 
 const MainList: FC = () => {
-    const { scrollToTop, scrollYGlobal, scrollY } = useSharedState()
+    const {  scrollYGlobal, scrollY } = useSharedState()
     const previousScrollYTopButton = useRef<number>(0)
     const previousScrollY = useRef(0)
     const sectionListRef = useRef<SectionList>(null)
