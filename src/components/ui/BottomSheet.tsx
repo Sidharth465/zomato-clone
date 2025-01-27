@@ -8,7 +8,8 @@ import Animated, {
 
 import React from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import {Gesture, GestureDetector, Pressable} from 'react-native-gesture-handler';
+import Icon from "@expo/vector-icons/MaterialIcons"
 
 
 import {HEIGHT, HEIGHT_SCR, isIOS} from '@utils/device';
@@ -90,8 +91,10 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
 
         runOnJS(setIsActive)(destination !== 0);
         active.value = destination !== 0;
-        translateY.value = withTiming(destination, {duration: 300}, done => {
+        translateY.value = withTiming(destination, {duration: 500}, done => {
           if (done && destination === 0) {
+
+           
             runOnJS(resetModal)();
           }
         });
@@ -130,13 +133,23 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
       .onUpdate(event => {
         translateY.value = event.translationY + context.value.y;
         translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
+        
       })
       .onEnd(() => {
-        if (Math.abs(MAX_TRANSLATE_Y) - Math.abs(translateY.value) < 50) {
-          scrollTo(MAX_TRANSLATE_Y);
-        } else {
-          !!onBackPress && runOnJS(onBackPress)();
-          scrollTo(0);
+        // if (Math.abs(MAX_TRANSLATE_Y) - Math.abs(translateY.value) < 50) {
+        //   scrollTo(MAX_TRANSLATE_Y);
+        // } else {
+        //   !!onBackPress && runOnJS(onBackPress)();
+        //   scrollTo(0);
+        // }
+        console.log("translate y value",(translateY.value))
+        console.log("modal height ",Math.abs(modalHeight))
+        // console.log("maxTranslate" ,Math.abs(MAX_TRANSLATE_Y))
+        // console.log("diff",Math.abs(MAX_TRANSLATE_Y) - Math.abs(translateY.value))
+        if(translateY.value >=Math.abs(modalHeight) ){
+          scrollTo(0)
+        }else{
+          scrollTo(translateY.value)
         }
       });
 
@@ -147,6 +160,11 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
         children
       );
 
+
+      const closeSheet = ()=>{
+        scrollTo(0)
+      }
+
     return (
       <>
         <Animated.View
@@ -156,13 +174,22 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
         />
         <GestureDetector gesture={gesture}>
           <Animated.View style={bottomSheetStyles}>
+           
             {!withoutLine && (
               <View style={[styles.borderRadius, lineStyleContainer]}>
                 <View style={[styles.line, lineStyle]} />
+               <Pressable onPress={closeSheet} style={{position:"absolute",right:2,top:2}}>
+               <Icon  name='cancel' size={30} color={"gray"}/>
+               </Pressable>
               </View>
             )}
+       
+            
+             <Animated.ScrollView >
             {wrappedChildren}
+            </Animated.ScrollView>
           </Animated.View>
+
         </GestureDetector>
       </>
     );
@@ -191,6 +218,12 @@ const styles = StyleSheet.create({
   borderRadius: {
     borderTopLeftRadius: 18,
     borderTopRightRadius: 18,
+    borderBottomWidth:2,
+    borderColor:"#FAFAFA",
+    paddingBottom:5
+
+    
+
   },
   line: {
     width: 40,
@@ -201,6 +234,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#121212',
   },
+  
 });
 
 export default React.memo(BottomSheet);

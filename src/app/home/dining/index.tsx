@@ -10,6 +10,7 @@ const {modalInfo,setModalInfo} =  useModalContext()
 const onOpenModal =()=>{
 setModalInfo({
   content:<View>
+    <Image style={{height:100,width:100}} resizeMode="contain" source={require("@assets/images/tree.png")}/>
     <Text>Hello from modal</Text>
   </View>,
   modalHeight:200,
