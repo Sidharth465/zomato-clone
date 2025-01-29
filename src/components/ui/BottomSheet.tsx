@@ -91,10 +91,8 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
 
         runOnJS(setIsActive)(destination !== 0);
         active.value = destination !== 0;
-        translateY.value = withTiming(destination, {duration: 500}, done => {
+        translateY.value = withTiming(destination, {}, done => {
           if (done && destination === 0) {
-
-           
             runOnJS(resetModal)();
           }
         });
@@ -136,20 +134,18 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
         
       })
       .onEnd(() => {
-        // if (Math.abs(MAX_TRANSLATE_Y) - Math.abs(translateY.value) < 50) {
-        //   scrollTo(MAX_TRANSLATE_Y);
-        // } else {
-        //   !!onBackPress && runOnJS(onBackPress)();
-        //   scrollTo(0);
-        // }
+       
         console.log("translate y value",(translateY.value))
-        console.log("modal height ",Math.abs(modalHeight))
+        console.log("modal height ",(modalHeight))
         // console.log("maxTranslate" ,Math.abs(MAX_TRANSLATE_Y))
         // console.log("diff",Math.abs(MAX_TRANSLATE_Y) - Math.abs(translateY.value))
-        if(translateY.value >=Math.abs(modalHeight) ){
+
+        if(translateY.value >=0 ){
+
           scrollTo(0)
-        }else{
-          scrollTo(translateY.value)
+        }else {
+             !!onBackPress && runOnJS(onBackPress)();
+          scrollTo(-modalHeight)
         }
       });
 
