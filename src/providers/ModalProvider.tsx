@@ -72,7 +72,7 @@ export const ModalProvider=({children}:{children:React.ReactNode})=>{
 
 
 
-    console.log("modal info",modalInfo.content)
+    // console.log("modal info",modalInfo.content)
 
     return(<ModalContext.Provider value={{closeModal,modalInfo,resetModal,setModalInfo}}>
       <>

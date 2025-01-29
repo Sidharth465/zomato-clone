@@ -6,7 +6,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 import {Gesture, GestureDetector, Pressable} from 'react-native-gesture-handler';
 import Icon from "@expo/vector-icons/MaterialIcons"
@@ -54,9 +54,12 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
     const {resetModal} = useModalContext();
     const active = useSharedValue(true);
     const translateY = useSharedValue(0);
+    const prevTranslateY = useRef(0);
     const context = useSharedValue({y: 0});
     const [isActive, setIsActive] = React.useState(false);
     const [isPanEnabled, setIsPanEnabled] = React.useState(panEnabled);
+    
+   
 
     //** ----- STYLES -----
     const animBottomSheetStyle = useAnimatedStyle(
@@ -91,7 +94,7 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
 
         runOnJS(setIsActive)(destination !== 0);
         active.value = destination !== 0;
-        translateY.value = withTiming(destination, {}, done => {
+        translateY.value = withTiming(destination, {duration:500}, done => {
           if (done && destination === 0) {
             runOnJS(resetModal)();
           }
@@ -122,32 +125,32 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
       panEnabled !== isPanEnabled && setIsPanEnabled(panEnabled);
     }, [panEnabled, isPanEnabled]);
 
+    React.useEffect(() => {
+      scrollTo(-modalHeight/2); // Animate from below the screen to the modalHeight
+    }, [modalHeight]);
+
     //** ----- GESTURES -----
     const gesture = Gesture.Pan()
-      .enabled(isPanEnabled)
-      .onStart(() => {
-        context.value = {y: translateY.value};
-      })
-      .onUpdate(event => {
-        translateY.value = event.translationY + context.value.y;
-        translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
-        
-      })
-      .onEnd(() => {
-       
-        console.log("translate y value",(translateY.value))
-        console.log("modal height ",(modalHeight))
-        // console.log("maxTranslate" ,Math.abs(MAX_TRANSLATE_Y))
-        // console.log("diff",Math.abs(MAX_TRANSLATE_Y) - Math.abs(translateY.value))
+  .enabled(isPanEnabled)
+  .onStart(() => {
+    context.value = {y: translateY.value};
+  })
+  .onUpdate(event => {
+    translateY.value = event.translationY + context.value.y;
+    translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
+  })
+  .onEnd(() => {
+    // Compare the current translation to determine if the user is dragging up or down
+    if (translateY.value >= 0) {
+      // Dragging up or trying to release to the top
+      scrollTo(0);
+    } else {
+      // Dragging down
+      !!onBackPress && runOnJS(onBackPress)();
+      scrollTo(MAX_TRANSLATE_Y);
+    }
+  });
 
-        if(translateY.value >=0 ){
-
-          scrollTo(0)
-        }else {
-             !!onBackPress && runOnJS(onBackPress)();
-          scrollTo(-modalHeight)
-        }
-      });
 
     const wrappedChildren =
       -MAX_TRANSLATE_Y === 0.9 * HEIGHT ? (
@@ -160,6 +163,8 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
       const closeSheet = ()=>{
         scrollTo(0)
       }
+
+  
 
     return (
       <>
@@ -207,7 +212,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'white',
     position: 'absolute',
-    top: MAX_HEIGHT*0.6,
+    top: MAX_HEIGHT*0.7,
     borderRadius: 18,
     zIndex:10
   },
