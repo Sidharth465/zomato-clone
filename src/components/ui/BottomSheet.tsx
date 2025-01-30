@@ -94,7 +94,7 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
 
         runOnJS(setIsActive)(destination !== 0);
         active.value = destination !== 0;
-        translateY.value = withTiming(destination, {duration:500}, done => {
+        translateY.value = withTiming(destination, {duration:300}, done => {
           if (done && destination === 0) {
             runOnJS(resetModal)();
           }
@@ -139,15 +139,17 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
     translateY.value = event.translationY + context.value.y;
     translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
   })
-  .onEnd(() => {
-    // Compare the current translation to determine if the user is dragging up or down
+  .onEnd((e) => {
+
+    console.log("translate value",translateY.value)
+    console.log("on end",e?.translationY)
     if (translateY.value >= 0) {
-      // Dragging up or trying to release to the top
+
       scrollTo(0);
     } else {
       // Dragging down
       !!onBackPress && runOnJS(onBackPress)();
-      scrollTo(MAX_TRANSLATE_Y);
+      scrollTo(translateY.value);
     }
   });
 
@@ -190,7 +192,6 @@ const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
             {wrappedChildren}
             </Animated.ScrollView>
           </Animated.View>
-
         </GestureDetector>
       </>
     );
