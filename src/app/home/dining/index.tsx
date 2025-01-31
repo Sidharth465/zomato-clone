@@ -1,3 +1,4 @@
+import AnimatedSwitch from "@components/ui/AnimatedSwitch";
 import React from "react";
 import { Button, Image, Text, View } from "react-native";
 import { useModalContext } from "src/providers/ModalProvider";
@@ -25,6 +26,7 @@ setModalInfo({
 
   return (
     <View style={style.container}>
+      <AnimatedSwitch />
       <Image
         style={style.emptyImage}
         source={require("@assets/images/coming_soon.jpg")}

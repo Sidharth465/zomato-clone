@@ -1,14 +1,24 @@
-import { View, Text, Image } from "react-native";
+import TopAnimatedList from "@components/list/TopAnimatedList";
 import React from "react";
-import { emptyStyles as style } from "src/unistyles/emptyStyles";
+import { Image, StyleSheet, View } from "react-native";
+import { emptyStyles } from "src/unistyles/emptyStyles";
+import { homeStyles  as style} from "src/unistyles/homeStyles";
+// console.log("data",recommendedListData)
+
+
 
 const ReOrder = () => {
+
   return (
-    <View style={style.container}>
+  
+    <View   style={[style.container]}>
       <Image
-        style={style.emptyImage}
+style={emptyStyles.emptyImage}
         source={require("@assets/images/coming_soon3.png")}
+     
       />
+<TopAnimatedList />
+
     </View>
   );
 };

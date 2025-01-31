@@ -31,7 +31,7 @@ const MainList: FC = () => {
         const isScrollingDown = currentScrollY > previousScrollY.current;
         scrollY.value = isScrollingDown  ? withTiming(1, { duration: 300 }) : withTiming(0, { duration: 300 });
         scrollYGlobal.value = currentScrollY;
-        previousScrollY.current = currentScrollY
+     
 
         const containerHeight = event?.nativeEvent?.contentSize?.height;
         const layoutHeight = event?.nativeEvent?.layoutMeasurement?.height
@@ -39,6 +39,7 @@ const MainList: FC = () => {
 
 
         setIsNearEnd(offset + layoutHeight >= containerHeight - 500)
+        previousScrollY.current = currentScrollY
     }
 
     const handleScrollToTop = () => {

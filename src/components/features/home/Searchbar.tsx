@@ -14,6 +14,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import RollingContent from "react-native-rolling-bar";
 import CustomText from "@components/ui/CustomText";
 import { setReduxVegMode } from "@library/redux/slices/userSlice";
+import AnimatedSwitch from "@components/ui/AnimatedSwitch";
 
 const searchItem: string[] = [
   'Search "chai samosa"',
@@ -102,14 +103,7 @@ const Searchbar = () => {
             >
               MODE
             </Animated.Text>
-            <Image
-              style={homeStyles.switch}
-              source={
-                isVegMode
-                  ? require("@assets/icons/switch_on.png")
-                  : require("@assets/icons/switch_off.png")
-              }
-            />
+            <AnimatedSwitch />
           </Pressable>
         </View>
 
