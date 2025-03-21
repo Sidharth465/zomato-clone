@@ -1,20 +1,18 @@
-import { View, Text, Pressable, Image } from "react-native";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { homeStyles } from "src/unistyles/homeStyles";
+import Icon from "@components/global/Icon";
+import AnimatedSwitch from "@components/ui/AnimatedSwitch";
+import CustomText from "@components/ui/CustomText";
 import { useAppDispatch, useAppSelector } from "@hooks/index";
 import { useSharedState } from "@library/context/SharedContext";
+import { setReduxVegMode } from "@library/redux/slices/userSlice";
+import React, { forwardRef } from "react";
+import { Pressable, TextInput, View } from "react-native";
 import Animated, {
   interpolate,
   useAnimatedStyle,
 } from "react-native-reanimated";
-import Icon from "@components/global/Icon";
-import { Colors } from "src/unistyles/Constants";
-import { RFValue } from "react-native-responsive-fontsize";
 import RollingContent from "react-native-rolling-bar";
-import CustomText from "@components/ui/CustomText";
-import { setReduxVegMode } from "@library/redux/slices/userSlice";
-import AnimatedSwitch from "@components/ui/AnimatedSwitch";
+import { Colors } from "src/unistyles/Constants";
+import { homeStyles } from "src/unistyles/homeStyles";
 
 const searchItem: string[] = [
   'Search "chai samosa"',
@@ -39,7 +37,7 @@ const searchItem: string[] = [
   'Search "fish curry"',
 ];
 
-const Searchbar = () => {
+const Searchbar = ( props:any,ref:any) => {
   const dispatch = useAppDispatch();
   const { isVegMode } = useAppSelector((state) => state.userSlice);
   const { scrollYGlobal } = useSharedState();
@@ -53,7 +51,7 @@ const Searchbar = () => {
   return (
     <>
 
-        <View style={[homeStyles.flexRowBetween, homeStyles.padding]}>
+        <View  style={[homeStyles.flexRowBetween, homeStyles.padding]}>
           <Pressable style={homeStyles.searchInputContainer}>
             <Icon
               name="search"
@@ -69,6 +67,8 @@ const Searchbar = () => {
               customStyle={homeStyles.textContainer}
               forceRoll
             >
+              <TextInput  ref={ref} placeholderTextColor="#9E9E9E"   />
+
               {searchItem?.map((item, index) => {
                 return (
                   <CustomText
@@ -111,4 +111,4 @@ const Searchbar = () => {
   );
 };
 
-export default Searchbar;
+export default forwardRef(Searchbar);

@@ -1,23 +1,32 @@
 import Graphics from "@components/features/home/Graphics";
 import Header from "@components/features/home/Header";
+import Filler5 from "@components/global/FillerAnimation";
 import MainList from "@components/list/MainList";
 import { useSharedState } from "@library/context/SharedContext";
-import React, { FC } from "react";
-import { Button, Platform, Text, View } from "react-native";
+import localStorage from "@utils/localStorage";
+import { useFocusEffect } from "expo-router";
+import React, { FC, useEffect, useRef } from "react";
+import { Platform, View } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
   useAnimatedStyle
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useModalContext } from "src/providers/ModalProvider";
 import { homeStyles as styles } from "src/unistyles/homeStyles";
 
 const Delivery: FC = () => {
   const insets = useSafeAreaInsets();
   const { scrollYGlobal } = useSharedState();
+  const searchHeaderRef = useRef<{ focus: () => void } | null>(null);
+  const  [fillerVisible,setFillerVisible] = React.useState<boolean>(false);
+  const handleInputFocus = () => {
+    searchHeaderRef.current?.focus();
+  };
   const backgroundColorChanges = useAnimatedStyle(() => {
     const opacity = interpolate(scrollYGlobal.value, [1, 50], [0, 1]);
+    
+  
 
     return {
       backgroundColor: `rgba(255,255,255,${opacity})`,
@@ -42,6 +51,22 @@ const Delivery: FC = () => {
       transform: [{ translateY: translateY }],
     };
   });
+console.log("fillerVisible",fillerVisible)
+  async function checkIfFirstTime(){
+    let exposed = await localStorage.getItem("isFirstExpDone");
+    console.log('exposed',exposed)
+    if(exposed){
+      setFillerVisible(false);
+    }else{
+      setFillerVisible(true);
+    }
+  }
+
+  useEffect(()=>{
+    checkIfFirstTime()
+    
+  },[])
+
 
   return (
     <View
@@ -55,7 +80,7 @@ const Delivery: FC = () => {
           <Graphics />
         </Animated.View>
         <Animated.View style={[backgroundColorChanges, styles.topHeader]}>
-          <Header />
+          <Header ref = {searchHeaderRef}/>
 
         </Animated.View>
       </Animated.View>
@@ -64,8 +89,21 @@ const Delivery: FC = () => {
         <MainList />
 
       </Animated.View>
-
-
+     {fillerVisible&&
+      <View
+      style={{
+        flex: 1,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 9999999,
+      }}
+    >
+      <Filler5 handleInputFocus={handleInputFocus} fillerVisible={fillerVisible} navigation={navigator} setFillerVisible={setFillerVisible}/>
+    </View>
+     }
 
 
     </View>

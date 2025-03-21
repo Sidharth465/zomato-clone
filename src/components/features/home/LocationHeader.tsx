@@ -1,6 +1,7 @@
 import Icon from "@components/global/Icon";
 import CustomText from "@components/ui/CustomText";
 import { useSharedState } from "@library/context/SharedContext";
+import localStorage from "@utils/localStorage";
 import React, { FC } from "react";
 import { Image, Pressable, View } from "react-native";
 import Animated, {
@@ -63,7 +64,7 @@ const LocationHeader: FC = () => {
               source={require("@assets/icons/translation.png")}
             />
           </Pressable>
-          <Pressable style={styles.profileAvatar}>
+          <Pressable onPress={async()=>{await localStorage.removeItem("isFirstExpDone")}} style={styles.profileAvatar}>
             <Image
               style={styles.goldenCircle}
               source={require("@assets/icons/golden_circle.png")}

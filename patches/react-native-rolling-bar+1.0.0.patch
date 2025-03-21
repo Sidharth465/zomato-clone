@@ -1,0 +1,18 @@
+diff --git a/node_modules/react-native-rolling-bar/lib/typescript/index.d.ts b/node_modules/react-native-rolling-bar/lib/typescript/index.d.ts
+index b0eb64c..2897c8d 100644
+--- a/node_modules/react-native-rolling-bar/lib/typescript/index.d.ts
++++ b/node_modules/react-native-rolling-bar/lib/typescript/index.d.ts
+@@ -1,4 +1,4 @@
+-import React from 'react';
++import React, { ReactNode } from 'react';
+ import { ViewStyle, StyleProp } from 'react-native';
+ declare type Props = {
+     interval: number;
+@@ -7,6 +7,7 @@ declare type Props = {
+     delayBetween?: number;
+     defaultStyle?: boolean;
+     forceRoll?: boolean;
++    children?:ReactNode
+ };
+ declare const RollingBar: React.FC<Props>;
+ export default RollingBar;
